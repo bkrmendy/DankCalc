@@ -23,8 +23,6 @@ type CalcMessageOut
     | RequestCellUpdate
     ;
 
-type CellContent = { };
-
 interface CalcCell {
     id: string;
     content: CellContent;
@@ -36,12 +34,6 @@ interface CalcState {
 }
 
 type CalcDispatch = (state: CalcState, message: CalcMessageIn[]) => [CalcState, CalcMessageOut[]];
-
-const 
-
-function parseCellContent(content: string): CellContent {
-
-}
 
 
 

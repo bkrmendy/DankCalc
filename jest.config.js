@@ -11,4 +11,5 @@ export default {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
   modulePathIgnorePatterns: ["parson"],
+  coverageReporters
 }
