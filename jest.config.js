@@ -10,6 +10,10 @@ export default {
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
-  modulePathIgnorePatterns: ["parson"],
-  coverageReporters
+  "modulePathIgnorePatterns": ["parson"],
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.ts",
+    "!src/utils/*.ts"
+  ]
 }
