@@ -2,7 +2,7 @@ import { Calculation, CellError, CellValue, CellValueBuilder, Empty, Number, Tex
 import P, { Parser } from "../parson/src/Parson";
 import { Punctuation } from "./utils/Punctuaction";
 import { id } from "./utils/Utils";
-import { CellLocation, CellLocationRange, CellLocationSingle } from "./dankcalc";
+import { CellLocation, CellLocationRange, CellLocationSingle } from "./SpreadsheetShell";
 
 /**
  * Empty cell

@@ -1,5 +1,5 @@
 import assert from "assert";
-import { CellLocation, CellLocationSingle } from "./dankcalc";
+import { CellLocation, CellLocationSingle } from "./SpreadsheetShell";
 
 export interface Empty {
     type: "empty"
