@@ -1,7 +1,7 @@
 # DANKCALC
 *The dankest spreadsheet engine of the Solar System*
 
-
+**`WORK IN PROGRESS`**
 
 ## Supported formulae
 - [] `AVERAGE`
