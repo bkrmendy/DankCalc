@@ -1,4 +1,3 @@
-import { Expression } from "./Expression";
 import { Environment } from "./Formula";
 import { CellValue } from "./Spreadsheet";
 
@@ -31,7 +30,7 @@ interface UpdateCellValue {
 
 interface CalcState {
     environment: Environment;
-    cells: Map<CellLocation, Expression>;
+    cells: Map<CellLocation, CellValue>;
 }
 
 type CalcDispatch = (state: CalcState, message: UpdateCellContent[]) => [CalcState, UpdateCellValue[]];

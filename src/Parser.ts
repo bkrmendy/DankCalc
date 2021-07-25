@@ -1,9 +1,10 @@
-import { Calculation, CellValue, Empty, Number, Text } from "./Spreadsheet";
-import { Result } from "./Result";
+import { Calculation, CellError, CellValue, Empty, Number, Text } from "./Spreadsheet";
+import { Result } from "./utils/Result";
 import P, { Parser } from "../parson/src/Parson";
 import { Punctuation } from "./utils/Punctuaction";
 import { id } from "./utils/Utils";
 import { CellLocation, CellLocationRange, CellLocationSingle } from "./dankcalc";
+import { ResultBuilder } from "../parson/src/Result";
 
 // TODO: insert parson here
 
@@ -34,7 +35,7 @@ const sign: Parser<SignFn> = P.option(P.alternative([minus, plus]), id);
 const fractionalPart: Parser<number> = P.bind(P.chr("."), _ => P.nat);
 
 export const numberFromParts = (sign: SignFn, whole: number, frac: number | null): number => {
-    const fracc = 10 ^ Math.floor(Math.log10(frac)) + 1;
+    const fracc = frac == null ? 0 : 10 ^ Math.floor(Math.log10(frac)) + 1;
     return sign(whole + fracc);
 }
 
@@ -111,6 +112,8 @@ export const cellValue: Parser<CellValue> = P.alternative<CellValue>([
     empty
 ]);
 
-export const parseCellValue = (content: string): Result<CellValue, string> => {
-    return null;
+export const parseCellValue = (content: string): CellValue => {
+    const result = P.parse(content, cellValue);
+    const syntaxError: CellError = { type: "error", content: "SYNTAXERROR" };
+    return result ?? syntaxError;
 }

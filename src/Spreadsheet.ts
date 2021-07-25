@@ -1,5 +1,4 @@
 import { CellLocation } from "./dankcalc";
-import { Expression } from "./Expression";
 
 export interface Empty {
     type: "empty"

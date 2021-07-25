@@ -1,5 +1,5 @@
 import { assertNever } from "./utils/Utils";
-import { Result } from "./Result";
+import { Result } from "./utils/Result";
 import { CellValue } from "./Spreadsheet";
 
 export interface CellRangeSingle {
@@ -44,8 +44,13 @@ export interface Environment {
 
 const define = (add: Define, environment: Environment): Environment => {
     switch (add.type) {
-        case "addFunction": environment.defines.set(add.name, add.evaluate); return environment;
-        case "addOperator": environment.operators.set(add.symbol, add.evaluate); return environment;
+        case "addFunction":
+            environment.defines.set(add.name, add.evaluate);
+            break;
+        case "addOperator":
+            environment.operators.set(add.symbol, add.evaluate);
+            break;
         default: assertNever(add);
     }
+    return environment;
 }
