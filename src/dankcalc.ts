@@ -1,39 +1,40 @@
+import { Expression } from "./Expression";
+import { Environment } from "./Formula";
+import { CellValue } from "./Spreadsheet";
+
+export interface CellLocationSingle {
+    type: "single";
+    row: string;
+    column: string;
+}
+
+export interface CellLocationRange {
+    type: "range"
+    from: CellLocationSingle;
+    to: CellLocationSingle;
+}
+
+export type CellLocation
+    = CellLocationSingle
+    | CellLocationRange
+    ;
+
 interface UpdateCellContent {
-    type: "updateCell";
-    id: string;
+    location: CellLocation;
     content: string;
 }
 
-interface SheetLocation {
-    row: number;
-    col: number;
-}
-
-interface RequestCellUpdate {
-    type: "requestCell";
-    locations: [SheetLocation];
-}
-
-type CalcMessageIn
-    = UpdateCellContent
-    ;
-
-type CalcMessageOut
-    = UpdateCellContent
-    | RequestCellUpdate
-    ;
-
-interface CalcCell {
-    id: string;
-    content: CellContent;
+interface UpdateCellValue {
+    location: CellLocation;
+    value: CellValue;
 }
 
 interface CalcState {
-    cells: { [key: string]: CellContent};
-    edges: { [key: string]: string[] };
+    environment: Environment;
+    cells: Map<CellLocation, Expression>;
 }
 
-type CalcDispatch = (state: CalcState, message: CalcMessageIn[]) => [CalcState, CalcMessageOut[]];
+type CalcDispatch = (state: CalcState, message: UpdateCellContent[]) => [CalcState, UpdateCellValue[]];
 
 
 
