@@ -43,5 +43,6 @@ export const Punctuation = [
     "☞",        // index/fist
     "∴",        // therefore sign
     "‽",        // interrobang
-    "※"          // reference mark
+    "※",          // reference mark
+    "=",        // equals sign
 ].join("");
